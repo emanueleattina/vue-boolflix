@@ -44,6 +44,9 @@ var app = new Vue ({
                 if(this.movies[i].original_language == "de") {
                     this.movies[i].original_language = "🇩🇪";
                 }
+                if(this.movies[i].original_language == "ja") {
+                    this.movies[i].original_language = "🇯🇵";
+                }
             }
 
             for(i = 0; i < this.series.length; i++) {
@@ -62,47 +65,48 @@ var app = new Vue ({
                 if(this.series[i].original_language == "de") {
                     this.series[i].original_language = "🇩🇪";
                 }
+                if(this.series[i].original_language == "ja") {
+                    this.series[i].original_language = "🇯🇵";
+                }
 
             }
         },
         voteStar() {
             for(i = 0; i < this.movies.length; i++) {
-                let vote = Math.floor(this.series[i].vote_average) / 2;
-                if(vote > 0 && vote < 3) {
-                    vote = "⭐️";
+                if(this.movies[i].vote_average > 0 && this.movies[i].vote_average < 3) {
+                    this.movies[i].vote_average = "⭐️";
                 }
-                if(vote > 2 && vote < 5) {
-                    vote = "⭐️⭐️";
+                if(this.movies[i].vote_average > 2 && this.movies[i].vote_average < 5) {
+                    this.movies[i].vote_average = "⭐️⭐️";
                 }
-                if(vote > 4 && vote < 7) {
-                    vote = "⭐️⭐️⭐️";
+                if(this.movies[i].vote_average > 4 && this.movies[i].vote_average < 7) {
+                    this.movies[i].vote_average = "⭐️⭐️⭐️";
                 }
-                if(vote > 6 && vote < 9) {
-                    vote = "⭐️⭐️⭐️⭐️";
+                if(this.movies[i].vote_average > 6 && this.movies[i].vote_average < 9) {
+                    this.movies[i].vote_average = "⭐️⭐️⭐️⭐️";
                 }
-                if(vote > 8 && vote < 11) {
-                    vote = "⭐️⭐️⭐️⭐️⭐️";
+                if(this.movies[i].vote_average > 8 && this.movies[i].vote_average < 11) {
+                    this.movies[i].vote_average = "⭐️⭐️⭐️⭐️⭐️";
                 }
             }
 
             for(i = 0; i < this.series.length; i++) {
-                let vote = Math.floor(this.series[i].vote_average) / 2;
-                if(vote > 0 && vote < 3) {
-                    vote = "⭐️";
+                if(this.series[i].vote_average > 0 && this.series[i].vote_average < 3) {
+                    this.series[i].vote_average = "⭐️";
                 }
-                if(vote > 2 && vote < 5) {
-                    vote = "⭐️⭐️";
+                if(this.series[i].vote_average > 2 && this.series[i].vote_average < 5) {
+                    this.series[i].vote_average = "⭐️⭐️";
                 }
-                if(vote > 4 && vote < 7) {
-                    vote = "⭐️⭐️⭐️";
+                if(this.series[i].vote_average > 4 && this.series[i].vote_average < 7) {
+                    this.series[i].vote_average = "⭐️⭐️⭐️";
                 }
-                if(vote > 6 && vote < 9) {
-                    vote = "⭐️⭐️⭐️⭐️";
+                if(this.series[i].vote_average > 6 && this.series[i].vote_average < 9) {
+                    this.series[i].vote_average = "⭐️⭐️⭐️⭐️";
                 }
-                if(vote > 8 && vote < 11) {
-                    vote = "⭐️⭐️⭐️⭐️⭐️";
+                if(this.series[i].vote_average > 8 && this.series[i].vote_average < 11) {
+                    this.series[i].vote_average = "⭐️⭐️⭐️⭐️⭐️";
                 }
             }
-        }
+        },
     }
 });

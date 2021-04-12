@@ -48,8 +48,9 @@
 
 .card {
     color: #fff;
-    width: 300px;
     height: 500px;
+    width: calc(100% / 5 - 10px);
+    margin: 5px;
 }
 
 .card-description {
@@ -66,4 +67,41 @@
 .card span {
     font-size: 1em;
     display: block;
+}
+
+@media all and (min-width: 1501px)
+{
+    .card {
+        width: calc(100% / 6 - 10px);
+    }
+}
+
+/* MD */
+
+@media all and (min-width: 1200px) and (max-width: 1500px)
+{
+    .card {
+        width: calc(100% / 5 - 10px);
+    }
+}
+
+@media all and (min-width: 800px) and (max-width: 1199px)
+{
+    .card {
+        width: calc(100% / 4 - 10px);
+    }
+}
+
+@media all and (min-width: 601px) and (max-width: 799px)
+{
+    .card {
+        width: calc(100% / 3 - 10px);
+    }
+}
+
+@media all and (max-width: 600px)
+{ 
+    .card {
+        width: calc(100% / 2 - 10px);
+    }
 }

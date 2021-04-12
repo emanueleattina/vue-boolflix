@@ -21,11 +21,17 @@
     <div id="root">
         <nav class="navbar">
             <span class="logo">BOOLFLIX</span>
-
-            <input type="text" placeholder="Cerca">
+            <input type="text" placeholder="Cerca"
+            @keyup.enter="searchMovie"
+            v-model="inputSearch">
         </nav>
         <main class="card-container">
-            
+            <div class="card" v-for="movie in movies">
+                <span>Titolo: {{ movie.title }} </span>
+                <span>Titolo originale: {{ movie.original_title }} </span>
+                <span>Voto: {{ movie.vote_average }} </span>
+                <span>Trama: {{ movie.overview }} </span>
+            </div>
         </main>        
     </div>
 

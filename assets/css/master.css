@@ -27,4 +27,17 @@
 .card-container {
     height: calc(100vh - 79px);
     background: rgb(36, 36, 36);
+    padding: 30px;
+}
+
+.card {
+    color: #fff;
+    padding: 10px 10px;
+    width: 250px;
+    background: #000;
+}
+
+.card span {
+    font-size: 1em;
+    display: inline-block;
 }

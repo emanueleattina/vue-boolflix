@@ -32,9 +32,12 @@
 
 .card-container {
     padding: 30px;
+    background: rgb(36, 36, 36);
+}
+
+.card-movies, .card-series {
     display: flex;
     flex-wrap: wrap;
-    background: rgb(36, 36, 36);
 }
 
 .card {
@@ -43,7 +46,6 @@
     width: 250px;
     height: 350px;
     background: #000;
-    margin: 10px;
 }
 
 .card span {

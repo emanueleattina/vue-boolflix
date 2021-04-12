@@ -20,22 +20,40 @@
 <body>
     <div id="root">
         <nav class="navbar">
-            <span class="logo">{{langFlag()}}BOOLFLIX</span>
+            <span class="logo">BOOLFLIX</span>
             <input type="text" placeholder="Cerca"
-            @keyup.enter="searchMovie"
+            @keyup.enter="searchContent"
             v-model="inputSearch">
         </nav>
         <main class="card-container">
-            <div class="card"
-            v-for="movie in movies">
-            <div class="card-description"></div>
-                <span>Titolo: {{ movie.title }} </span>
-                <span>Titolo originale: {{ movie.original_title }} </span>
-                <span>Voto: {{ movie.vote_average }} </span>
-                <span>Lingua: {{ movie.original_language }} </span>
-                <!-- <span>Trama: {{ movie.overview }} </span> -->
+
+            <h1 v-if="movies.length > 0">Film</h1>
+            <div class="card-movies">
+                <div class="card"
+                v-for="movie in movies">
+                <div class="card-description"></div>
+                    <span>Titolo: {{ movie.title }} </span>
+                    <span>Titolo originale: {{ movie.original_title }} </span>
+                    <span>Voto: {{ movie.vote_average }} </span>
+                    <span>Lingua: {{ movie.original_language }} </span>
+                    <!-- <span>Trama: {{ movie.overview }} </span> -->
+                </div>
             </div>
-        </main>        
+            
+            <h1 v-if="series.length > 0">Serie TV</h1>
+            <div class="card-series">
+                <div class="card"
+                v-for="serie in series">
+                <div class="card-description"></div>
+                    <span>Titolo: {{ serie.name }} </span>
+                    <span>Titolo originale: {{ serie.orirginal_name }} </span>
+                    <span>Voto: {{ serie.vote_average }} </span>
+                    <span>Lingua: {{ serie.original_language }} </span>
+                    <!-- <span>Trama: {{ serie.overview }} </span> -->
+                </div>
+            </div>
+            
+        </main>
     </div>
 
     <!-- link a librerie js -->

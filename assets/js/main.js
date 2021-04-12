@@ -17,6 +17,7 @@ var app = new Vue ({
             .then((results) => {
                 this.movies = (results.data.results);
                 this.langFlag();
+                this.voteStar();
             });
         },
         searchSerie() {

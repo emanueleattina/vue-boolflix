@@ -17,8 +17,14 @@
     color: #E50914;
     font-size: 2em;
     font-weight: 700;
+    cursor: pointer;
 }
 
 .navbar input {
     padding-left: 10px;
+}
+
+.card-container {
+    height: calc(100vh - 79px);
+    background: rgb(36, 36, 36);
 }

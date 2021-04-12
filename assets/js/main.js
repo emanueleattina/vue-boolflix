@@ -24,6 +24,7 @@ var app = new Vue ({
             .then((results) => {
                 this.series = (results.data.results);
                 this.langFlag();
+                this.voteStar();
             });
         },
         langFlag() {
@@ -62,6 +63,45 @@ var app = new Vue ({
                     this.series[i].original_language = "🇩🇪";
                 }
 
+            }
+        },
+        voteStar() {
+            for(i = 0; i < this.movies.length; i++) {
+                let vote = Math.floor(this.series[i].vote_average) / 2;
+                if(vote > 0 && vote < 3) {
+                    vote = "⭐️";
+                }
+                if(vote > 2 && vote < 5) {
+                    vote = "⭐️⭐️";
+                }
+                if(vote > 4 && vote < 7) {
+                    vote = "⭐️⭐️⭐️";
+                }
+                if(vote > 6 && vote < 9) {
+                    vote = "⭐️⭐️⭐️⭐️";
+                }
+                if(vote > 8 && vote < 11) {
+                    vote = "⭐️⭐️⭐️⭐️⭐️";
+                }
+            }
+
+            for(i = 0; i < this.series.length; i++) {
+                let vote = Math.floor(this.series[i].vote_average) / 2;
+                if(vote > 0 && vote < 3) {
+                    vote = "⭐️";
+                }
+                if(vote > 2 && vote < 5) {
+                    vote = "⭐️⭐️";
+                }
+                if(vote > 4 && vote < 7) {
+                    vote = "⭐️⭐️⭐️";
+                }
+                if(vote > 6 && vote < 9) {
+                    vote = "⭐️⭐️⭐️⭐️";
+                }
+                if(vote > 8 && vote < 11) {
+                    vote = "⭐️⭐️⭐️⭐️⭐️";
+                }
             }
         }
     }

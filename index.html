@@ -30,26 +30,28 @@
             <h1 v-if="movies.length > 0">Film</h1>
             <div class="card-movies">
                 <div class="card"
+                :style="`background: center / cover no-repeat url('https://image.tmdb.org/t/p/w342/${movie.poster_path}');`"
                 v-for="movie in movies">
-                <div class="card-description"></div>
-                    <span>Titolo: {{ movie.title }} </span>
-                    <span>Titolo originale: {{ movie.original_title }} </span>
-                    <span>Voto: {{ movie.vote_average }} </span>
-                    <span>Lingua: {{ movie.original_language }} </span>
-                    <!-- <span>Trama: {{ movie.overview }} </span> -->
+                    <div class="card-description">
+                        <span>Titolo: {{ movie.title }} </span>
+                        <span>Titolo originale: {{ movie.original_title }} </span>
+                        <span>Voto: {{ movie.vote_average }} </span>
+                        <span>Lingua: {{ movie.original_language }} </span>
+                    </div>
                 </div>
             </div>
             
             <h1 v-if="series.length > 0">Serie TV</h1>
             <div class="card-series">
                 <div class="card"
+                :style="`background: url('https://image.tmdb.org/t/p/w342/${serie.poster_path}') no-repeat center;`"
                 v-for="serie in series">
-                <div class="card-description"></div>
-                    <span>Titolo: {{ serie.name }} </span>
-                    <span>Titolo originale: {{ serie.orirginal_name }} </span>
-                    <span>Voto: {{ serie.vote_average }} </span>
-                    <span>Lingua: {{ serie.original_language }} </span>
-                    <!-- <span>Trama: {{ serie.overview }} </span> -->
+                    <div class="card-description">
+                        <span>Titolo: {{ serie.name }} </span>
+                        <span>Titolo originale: {{ serie.orirginal_name }} </span>
+                        <span>Voto: {{ serie.vote_average }} </span>
+                        <span>Lingua: {{ serie.original_language }} </span>
+                    </div>
                 </div>
             </div>
             

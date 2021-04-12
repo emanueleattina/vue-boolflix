@@ -7,9 +7,8 @@
 }
 
 #root {
-    background: rgb(36, 36, 36);
     height: 100vh;
-    background-attachment: fixed;
+    background: rgb(36, 36, 36);
 }
 
 .navbar {
@@ -17,6 +16,7 @@
     display: flex;
     justify-content: space-between;
     padding: 20px 15px;
+    width: 100%;
 }
 
 .navbar .logo {
@@ -31,20 +31,22 @@
 }
 
 .card-container {
-    /* height: calc(100vh - 79px); */
-    /* background: rgb(36, 36, 36); */
     padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    background: rgb(36, 36, 36);
 }
 
 .card {
     color: #fff;
     padding: 10px 10px;
     width: 250px;
+    height: 350px;
     background: #000;
-    margin-bottom: 10px;
+    margin: 10px;
 }
 
 .card span {
     font-size: 1em;
-    display: inline-block;
+    display: block;
 }

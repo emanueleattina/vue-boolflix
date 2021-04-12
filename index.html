@@ -20,17 +20,20 @@
 <body>
     <div id="root">
         <nav class="navbar">
-            <span class="logo">BOOLFLIX</span>
+            <span class="logo">{{langFlag()}}BOOLFLIX</span>
             <input type="text" placeholder="Cerca"
             @keyup.enter="searchMovie"
             v-model="inputSearch">
         </nav>
         <main class="card-container">
-            <div class="card" v-for="movie in movies">
+            <div class="card"
+            v-for="movie in movies">
+            <div class="card-description"></div>
                 <span>Titolo: {{ movie.title }} </span>
                 <span>Titolo originale: {{ movie.original_title }} </span>
                 <span>Voto: {{ movie.vote_average }} </span>
-                <span>Trama: {{ movie.overview }} </span>
+                <span>Lingua: {{ movie.original_language }} </span>
+                <!-- <span>Trama: {{ movie.overview }} </span> -->
             </div>
         </main>        
     </div>

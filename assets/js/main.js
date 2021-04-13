@@ -12,17 +12,39 @@ var app = new Vue ({
     },
     created() {
         axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=4117a3cbfe3896f4856820d20acc2358&language=it-IT')
-            .then((results) => {
-                this.genres = (results.data.genres);
-            });
+        .then((results) => {
+            this.genres = (results.data.genres);
+        });
 
         for(i = 1; i <= 3 ; i ++) {
             axios.get('https://api.themoviedb.org/3/movie/popular?api_key=4117a3cbfe3896f4856820d20acc2358&language=it-IT&page=' + i)
             .then((results) => {
                 // this.popularMovies.push(results.data.results);
-                this.popularMovies = [...this.popularMovies, ...results.data.results]
-        });
+                this.popularMovies = [...this.popularMovies, ...results.data.results];
+                this.langFlag();
+                this.voteStar();
+            });
         }
+
+        // this.genres.forEach(genre => {
+        //     this.popularMovies.forEach(film => {
+        //         for(i = 0; i < film.genre_id.length; i++) {
+        //             if(film.genre_id[i] == genre.id) {
+        //                 let newFilm = {
+
+        //                 }
+        //             }
+        //         }
+        //     });
+        // });
+
+        // for(i = 0; i < this.popularMovies.length; i++) {
+        //     for(j = 0; j < this.genres.length; j++) {
+        //         if(this.popularMovies[i].genre_ids.includes(this.genres[j].id)) {
+        //             this.popularMovies[i].push(this.genres[j])
+        //         }
+        //     }
+        // }
         
     },
     methods: {
@@ -90,7 +112,27 @@ var app = new Vue ({
                 if(this.series[i].original_language == "ja") {
                     this.series[i].original_language = "🇯🇵";
                 }
+            }
 
+            for(i = 0; i < this.popularMovies.length; i++) {
+                if(this.popularMovies[i].original_language == "en") {
+                    this.popularMovies[i].original_language = "🇬🇧";
+                }
+                if(this.popularMovies[i].original_language == "it") {
+                    this.popularMovies[i].original_language = "🇮🇹";
+                }
+                if(this.popularMovies[i].original_language == "es") {
+                    this.popularMovies[i].original_language = "🇪🇸";
+                }
+                if(this.popularMovies[i].original_language == "fr") {
+                    this.popularMovies[i].original_language = "🇫🇷";
+                }
+                if(this.popularMovies[i].original_language == "de") {
+                    this.popularMovies[i].original_language = "🇩🇪";
+                }
+                if(this.popularMovies[i].original_language == "ja") {
+                    this.popularMovies[i].original_language = "🇯🇵";
+                }
             }
         },
         voteStar() {
@@ -133,6 +175,27 @@ var app = new Vue ({
                 }
                 if(this.series[i].vote_average == 0) {
                     this.series[i].vote_average = "😞";
+                }
+            }
+
+            for(i = 0; i < this.popularMovies.length; i++) {
+                if(this.popularMovies[i].vote_average > 0 && this.popularMovies[i].vote_average < 3) {
+                    this.popularMovies[i].vote_average = "⭐️";
+                }
+                if(this.popularMovies[i].vote_average > 2 && this.popularMovies[i].vote_average < 5) {
+                    this.popularMovies[i].vote_average = "⭐️⭐️";
+                }
+                if(this.popularMovies[i].vote_average > 4 && this.popularMovies[i].vote_average < 7) {
+                    this.popularMovies[i].vote_average = "⭐️⭐️⭐️";
+                }
+                if(this.popularMovies[i].vote_average > 6 && this.popularMovies[i].vote_average < 9) {
+                    this.popularMovies[i].vote_average = "⭐️⭐️⭐️⭐️";
+                }
+                if(this.popularMovies[i].vote_average > 8 && this.popularMovies[i].vote_average < 11) {
+                    this.popularMovies[i].vote_average = "⭐️⭐️⭐️⭐️⭐️";
+                }
+                if(this.popularMovies[i].vote_average == 0) {
+                    this.popularMovies[i].vote_average = "😞";
                 }
             }
         },

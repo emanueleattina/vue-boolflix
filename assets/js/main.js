@@ -9,49 +9,60 @@ var app = new Vue ({
         series: [],
         genres: [],
         popularMovies: [],
+        filmSplitted: []
     },
     created() {
         axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=4117a3cbfe3896f4856820d20acc2358&language=it-IT')
         .then((results) => {
             this.genres = (results.data.genres);
+
+            for(i = 0; i < this.genres.length; i++) {
+                this.genres[i].film = [];
+            }
         });
 
         for(i = 1; i <= 6 ; i ++) {
             axios.get('https://api.themoviedb.org/3/movie/popular?api_key=4117a3cbfe3896f4856820d20acc2358&language=it-IT&page=' + i)
             .then((results) => {
                 // this.popularMovies.push(results.data.results);
+
                 this.popularMovies = [...this.popularMovies, ...results.data.results];
+
+                // for(j = 0; j < this.popularMovies.length; j++) {
+
+                //     this.genres[j].film = this.popularMovies.filter((element) => {
+
+                //         for(k = 0; k < element.genre_ids.length; k++) {
+
+                //             if(element.genre_ids[k] == 28) {
+                //                 // console.log(element.original_title);
+
+                //                 var result = this.genres.filter(obj => {
+                //                     return obj.name === "Azione";
+                //                 })
+                                
+                //                 return element
+                //             }
+                //         }
+                //     });
+
+                //    //ciclare array di tutti i film
+                //    //prendere il genere del film attualmente ciclato e tramite esso cercare l'elemento all'interno dell'array di generi che ha lo stesso nome
+                //     //recuperare indice indexOf() dell'elemento e in questo elemento nell'attributo "film" vado ad aggiungere l'elemento che sto ciclando
+                // }
+            
                 this.langFlag();
                 this.voteStar();
             });
         }
-
-        // this.genres.forEach(genre => {
-        //     this.popularMovies.forEach(film => {
-        //         for(i = 0; i < film.genre_id.length; i++) {
-        //             if(film.genre_id[i] == genre.id) {
-        //                 let newFilm = {
-
-        //                 }
-        //             }
-        //         }
-        //     });
-        // });
-
-        // for(i = 0; i < this.popularMovies.length; i++) {
-        //     for(j = 0; j < this.genres.length; j++) {
-        //         if(this.popularMovies[i].genre_ids.includes(this.genres[j].id)) {
-        //             this.popularMovies[i].push(this.genres[j])
-        //         }
-        //     }
-        // }
-        
     },
     methods: {
         searchContent () {
             this.searchMovie();
             this.searchSerie();
             this.searched = true;
+
+            this.movieGenresPush();
         },
         searchMovie() {
             axios.get('https://api.themoviedb.org/3/search/movie?api_key=4117a3cbfe3896f4856820d20acc2358&query='+ this.inputSearch +'&language=it-IT')
@@ -69,7 +80,17 @@ var app = new Vue ({
                 this.voteStar();
             });
         },
-        randomMovie() {
+        movieGenresPush() {
+            for(i = 0; i < this.genres.length; i++) {
+                this.filmSplitted[i] = [];
+                for(j = 0; j < this.popularMovies.length; j++) {
+                    for(k = 0; k < this.popularMovies[j].genre_ids.length; k++) {
+                        if(this.genres[i].id == this.popularMovies[j].genre_ids[k]) {
+                            this.filmSplitted[i].push(this.popularMovies[j])
+                        }
+                    }
+                }
+            }
         },
         langFlag() {
             for(i = 0; i < this.movies.length; i++) {

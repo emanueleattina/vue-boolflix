@@ -61,7 +61,7 @@
                 </div>
             </div>
             
-            <h1 v-if="series.length > 0">Serie TV</h1>
+            <h1 v-if="series.length > 0" class="mt-40">Serie TV</h1>
             <div class="card-movies-series">
                 <div class="card"
                 :style="`background: url('https://image.tmdb.org/t/p/w342/${serie.poster_path}') no-repeat center;`"
@@ -80,16 +80,16 @@
                 <div class="genre"
                 v-for="genre in genres"
                 v-if="genre.name != 'televisione film'">
-                    <h1> {{ genre.name }} </h1>
+                    <h1> {{ genre.name }} - id: {{ genre.id }} </h1>
                 </div>
             </div>
 
-            <div class="card-movies-series">
+            <div class="card-movies-series" v-if="searched == false">
                 <div class="card"
                 :style="`background: center / cover no-repeat url('https://image.tmdb.org/t/p/w342/${popular.poster_path}');`"
                 v-for="popular in popularMovies"
                 v-if="popular.poster_path != null">
-                    <h1> {{ popular.genre_ids }} </h1>
+                    <!-- <h1> {{ popular.genre_ids }} </h1> -->
                     <div class="card-description">
                         <span>Titolo: {{ popular.title }} </span>
                         <span v-if="popular.title != popular.original_title">Titolo originale: {{ popular.original_title }} </span>

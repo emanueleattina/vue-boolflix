@@ -16,7 +16,7 @@ var app = new Vue ({
             this.genres = (results.data.genres);
         });
 
-        for(i = 1; i <= 3 ; i ++) {
+        for(i = 1; i <= 6 ; i ++) {
             axios.get('https://api.themoviedb.org/3/movie/popular?api_key=4117a3cbfe3896f4856820d20acc2358&language=it-IT&page=' + i)
             .then((results) => {
                 // this.popularMovies.push(results.data.results);
@@ -91,6 +91,9 @@ var app = new Vue ({
                 if(this.movies[i].original_language == "ja") {
                     this.movies[i].original_language = "🇯🇵";
                 }
+                if(this.movies[i].original_language == "pt") {
+                    this.movies[i].original_language = "🇵🇹";
+                }
             }
 
             for(i = 0; i < this.series.length; i++) {
@@ -111,6 +114,9 @@ var app = new Vue ({
                 }
                 if(this.series[i].original_language == "ja") {
                     this.series[i].original_language = "🇯🇵";
+                }
+                if(this.series[i].original_language == "pt") {
+                    this.series[i].original_language = "🇵🇹";
                 }
             }
 
@@ -133,6 +139,9 @@ var app = new Vue ({
                 if(this.popularMovies[i].original_language == "ja") {
                     this.popularMovies[i].original_language = "🇯🇵";
                 }
+                if(this.popularMovies[i].original_language == "pt") {
+                    this.popularMovies[i].original_language = "🇵🇹";
+                }
             }
         },
         voteStar() {
@@ -153,7 +162,7 @@ var app = new Vue ({
                     this.movies[i].vote_average = "⭐️⭐️⭐️⭐️⭐️";
                 }
                 if(this.movies[i].vote_average == 0) {
-                    this.movies[i].vote_average = "😞";
+                    this.movies[i].vote_average = "☢️";
                 }
             }
 
@@ -174,7 +183,7 @@ var app = new Vue ({
                     this.series[i].vote_average = "⭐️⭐️⭐️⭐️⭐️";
                 }
                 if(this.series[i].vote_average == 0) {
-                    this.series[i].vote_average = "😞";
+                    this.series[i].vote_average = "☢️";
                 }
             }
 
@@ -195,7 +204,7 @@ var app = new Vue ({
                     this.popularMovies[i].vote_average = "⭐️⭐️⭐️⭐️⭐️";
                 }
                 if(this.popularMovies[i].vote_average == 0) {
-                    this.popularMovies[i].vote_average = "😞";
+                    this.popularMovies[i].vote_average = "☢️";
                 }
             }
         },

@@ -9,7 +9,8 @@ var app = new Vue ({
         series: [],
         genres: [],
         popularMovies: [],
-        filmSplitted: []
+        homePage: true,
+        // filmSplitted: []
     },
     created() {
         axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=4117a3cbfe3896f4856820d20acc2358&language=it-IT')
@@ -21,7 +22,7 @@ var app = new Vue ({
             }
         });
 
-        for(i = 1; i <= 6 ; i ++) {
+        for(i = 1; i <= 7 ; i ++) {
             axios.get('https://api.themoviedb.org/3/movie/popular?api_key=4117a3cbfe3896f4856820d20acc2358&language=it-IT&page=' + i)
             .then((results) => {
                 // this.popularMovies.push(results.data.results);
@@ -61,8 +62,9 @@ var app = new Vue ({
             this.searchMovie();
             this.searchSerie();
             this.searched = true;
+            this.homePage = false;
 
-            this.movieGenresPush();
+            // this.movieGenresPush();
         },
         searchMovie() {
             axios.get('https://api.themoviedb.org/3/search/movie?api_key=4117a3cbfe3896f4856820d20acc2358&query='+ this.inputSearch +'&language=it-IT')
@@ -80,18 +82,18 @@ var app = new Vue ({
                 this.voteStar();
             });
         },
-        movieGenresPush() {
-            for(i = 0; i < this.genres.length; i++) {
-                this.filmSplitted[i] = [];
-                for(j = 0; j < this.popularMovies.length; j++) {
-                    for(k = 0; k < this.popularMovies[j].genre_ids.length; k++) {
-                        if(this.genres[i].id == this.popularMovies[j].genre_ids[k]) {
-                            this.filmSplitted[i].push(this.popularMovies[j])
-                        }
-                    }
-                }
-            }
-        },
+        // movieGenresPush() {
+        //     for(i = 0; i < this.genres.length; i++) {
+        //         this.filmSplitted[i] = [];
+        //         for(j = 0; j < this.popularMovies.length; j++) {
+        //             for(k = 0; k < this.popularMovies[j].genre_ids.length; k++) {
+        //                 if(this.genres[i].id == this.popularMovies[j].genre_ids[k]) {
+        //                     this.filmSplitted[i].push(this.popularMovies[j])
+        //                 }
+        //             }
+        //         }
+        //     }
+        // },
         langFlag() {
             for(i = 0; i < this.movies.length; i++) {
                 if(this.movies[i].original_language == "en") {

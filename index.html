@@ -23,11 +23,11 @@
             <div class="navbar-left">
                 <ul>
                     <li>
-                        <a><img class="logo" src="assets/img/netflix-logo.png" alt="Logo Netflix"></a>
+                        <a @click="homePage = true"><img class="logo" src="assets/img/netflix-logo.png" alt="Logo Netflix"></a>
                     </li>
                     <li @keyup.enter="searchSerie">
                         <a>
-                            serie tv{{ movieGenresPush() }}
+                            serie tv
                         </a>
                     </li>
                     <li @keyup.enter="searchMovie">
@@ -76,17 +76,17 @@
                 </div>
             </div>
 
-            <div class="genres-list" v-if="searched == false">
-                <div class="genre"
+            <div class="genres-list" v-if="searched == false && homePage == true">
+                <div class="genre mb-40"
                 v-for="genre in genres"
-                v-if="genre.name != 'televisione film'">
+                v-if="genre.name != 'televisione film' && genre.name != 'Documentario'">
                     <h1> {{ genre.name }} </h1>
-                    <div class="card-movies-series" v-if="searched == false">
-                        <div class="card"
+                    <div class="card-movies-series-homepage" v-if="searched == false">
+                        <div class="card-homepage"
                         :style="`background: center / cover no-repeat url('https://image.tmdb.org/t/p/w342/${popular.poster_path}');`"
                         v-for="(popular, index) in popularMovies"
                         v-if="popular.poster_path != null && popular.genre_ids.includes(genre.id)">
-                            <div class="card-description">
+                            <div class="card-description-homepage">
                                 <span>Titolo: {{ popular.title }} </span>
                                 <span v-if="popular.title != popular.original_title">Titolo originale: {{ popular.original_title }} </span>
                                 <span>Voto: {{ popular.vote_average }} </span>

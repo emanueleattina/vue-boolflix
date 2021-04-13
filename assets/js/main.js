@@ -4,13 +4,32 @@ var app = new Vue ({
     el: '#root',
     data: {
         inputSearch: '',
+        searched: false,
         movies: [],
         series: [],
+        genres: [],
+        popularMovies: [],
+    },
+    created() {
+        axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=4117a3cbfe3896f4856820d20acc2358&language=it-IT')
+            .then((results) => {
+                this.genres = (results.data.genres);
+            });
+
+        for(i = 1; i <= 3 ; i ++) {
+            axios.get('https://api.themoviedb.org/3/movie/popular?api_key=4117a3cbfe3896f4856820d20acc2358&language=it-IT&page=' + i)
+            .then((results) => {
+                // this.popularMovies.push(results.data.results);
+                this.popularMovies = [...this.popularMovies, ...results.data.results]
+        });
+        }
+        
     },
     methods: {
         searchContent () {
             this.searchMovie();
             this.searchSerie();
+            this.searched = true;
         },
         searchMovie() {
             axios.get('https://api.themoviedb.org/3/search/movie?api_key=4117a3cbfe3896f4856820d20acc2358&query='+ this.inputSearch +'&language=it-IT')
@@ -27,6 +46,8 @@ var app = new Vue ({
                 this.langFlag();
                 this.voteStar();
             });
+        },
+        randomMovie() {
         },
         langFlag() {
             for(i = 0; i < this.movies.length; i++) {
@@ -89,6 +110,9 @@ var app = new Vue ({
                 if(this.movies[i].vote_average > 8 && this.movies[i].vote_average < 11) {
                     this.movies[i].vote_average = "⭐️⭐️⭐️⭐️⭐️";
                 }
+                if(this.movies[i].vote_average == 0) {
+                    this.movies[i].vote_average = "😞";
+                }
             }
 
             for(i = 0; i < this.series.length; i++) {
@@ -106,6 +130,9 @@ var app = new Vue ({
                 }
                 if(this.series[i].vote_average > 8 && this.series[i].vote_average < 11) {
                     this.series[i].vote_average = "⭐️⭐️⭐️⭐️⭐️";
+                }
+                if(this.series[i].vote_average == 0) {
+                    this.series[i].vote_average = "😞";
                 }
             }
         },

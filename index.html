@@ -53,9 +53,13 @@
                 v-for="movie in movies"
                 v-if="movie.poster_path != null">
                     <div class="card-description">
-                        <span>Titolo: {{ movie.title }} </span>
-                        <span v-if="movie.title != movie.original_title">Titolo originale: {{ movie.original_title }} </span>
-                        <span>Voto: {{ movie.vote_average }} </span>
+                        <span class="card-title"> {{ movie.title }} </span>
+                        <span class="card-title-original" v-if="movie.title != movie.original_title"> {{ movie.original_title }} </span>
+                        <span>
+                            <i class='fas fa-star yellow' v-for='star in getStars(movie.vote_average)'></i>
+
+                            <i class='far fa-star yellow  ml-4' v-for='star in 5- getStars(movie.vote_average)'></i>
+                        </span>
                         <span>Lingua: {{ movie.original_language }} </span>
                     </div>
                 </div>
@@ -68,9 +72,12 @@
                 v-for="serie in series"
                 v-if="serie.poster_path != null">
                     <div class="card-description">
-                        <span>Titolo: {{ serie.name }} </span>
-                        <span v-if="serie.name != serie.original_name">Titolo originale: {{ serie.original_name }} </span>
-                        <span>Voto: {{ serie.vote_average }} </span>
+                        <span class="card-title"> {{ serie.name }} </span>
+                        <span class="card-title-original" v-if="serie.name != serie.original_name"> {{ serie.original_name }} </span>
+                        <span>
+                            <i class='fas fa-star yellow ml-4' v-for='star in getStars(serie.vote_average)'></i>
+                            <i class='far fa-star yellow' v-for='star in 5- getStars(serie.vote_average)'></i>
+                        </span>
                         <span>Lingua: {{ serie.original_language }} </span>
                     </div>
                 </div>
@@ -87,9 +94,15 @@
                         v-for="(popular, index) in popularMovies"
                         v-if="popular.poster_path != null && popular.genre_ids.includes(genre.id)">
                             <div class="card-description-homepage">
-                                <span>Titolo: {{ popular.title }} </span>
-                                <span v-if="popular.title != popular.original_title">Titolo originale: {{ popular.original_title }} </span>
-                                <span>Voto: {{ popular.vote_average }} </span>
+                                <span class="card-title"> {{ popular.title }} </span>
+                                <span class="card-title-original" v-if="popular.title != popular.original_title"> {{ popular.original_title }} </span>
+                                <!-- <span v-html="star"></span> -->
+                                <span>
+                                    <i class='fas fa-star yellow' v-for='star in getStars(popular.vote_average)'></i>
+
+                                    <i class='far fa-star yellow ml-4' v-for='star in 5 - getStars(popular.vote_average)'></i>
+                                </span>
+                                
                                 <span>Lingua: {{ popular.original_language }} </span>
                             </div>
                         </div>
